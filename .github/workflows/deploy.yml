@@ -20,8 +20,12 @@ jobs:
     - name: Deploy to EC2
       run: |
         ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+          
+          
           cd /var/www/html
           rm -rf *
-          git clone https://github.com/${{ github.repository }} .
+          git clone https://github.com/saurabh-jadhav-09/hello-world-aws .
+          cp /hello-worls-aws/index.html index.html
+        
           sudo systemctl restart apache2
         EOF
